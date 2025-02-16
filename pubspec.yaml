@@ -1,0 +1,47 @@
+name: docflow
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  bloc: ^9.0.0
+  flutter_bloc: ^9.0.0
+  lottie: ^3.3.1
+  http: ^1.3.0
+  intl: ^0.20.2
+  purchases_flutter: ^8.4.5
+  shared_preferences: ^2.5.2
+  image_picker: ^1.1.2
+  file_picker: ^8.3.5
+  path_provider: ^2.1.5
+  uuid: ^4.5.1
+#  camera: ^0.11.1
+  camera: ^0.10.5+9
+  sqflite: ^2.4.1
+  path: ^1.9.0
+  in_app_review: ^2.0.10
+  get_it: ^8.0.3
+  flutter_pdfview: ^1.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter:
+
+  uses-material-design: true
+  assets:
+    - assets/images/onboarding/on1.png
+    - assets/images/onboarding/on2.png
+    - assets/images/empty_documents.png
+

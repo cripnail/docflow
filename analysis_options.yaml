@@ -1,0 +1,11 @@
+analyzer:
+  errors:
+    avoid_relative_lib_imports: error
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+
+linter:
+  rules:
+    - avoid_relative_lib_imports
+    - always_use_package_imports

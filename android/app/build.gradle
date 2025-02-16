@@ -1,0 +1,53 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+repositories {
+    google()
+    mavenCentral()
+    maven { url "https://api.revenuecat.com/public" }
+}
+
+android {
+    namespace = "com.example.docflow"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    configurations.all {
+        resolutionStrategy {
+            force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20'
+            force 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.20'
+        }
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    defaultConfig {
+        applicationId = "com.example.docflow"
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug
+        }
+    }
+}
+dependencies {
+    implementation 'androidx.preference:preference:1.2.1'
+//    implementation 'com.revenuecat.purchases:purchases-hybrid-common:8.4.0'  // Понизили версию
+}
+flutter {
+    source = "../.."
+}
