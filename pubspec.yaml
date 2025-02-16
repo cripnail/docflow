@@ -47,4 +47,5 @@ flutter:
     - assets/animations/
     - assets/images/
     - assets/images/onboarding/
+    - assets/images/paywall_top.png
 

@@ -1,3 +1,6 @@
+import 'package:docflow/core/constants/colors.dart';
+import 'package:docflow/core/constants/dimensions.dart';
+import 'package:docflow/core/constants/strings.dart';
 import 'package:docflow/core/widgets/app_loader.dart';
 import 'package:flutter/material.dart';
 
@@ -20,20 +23,16 @@ class _PaywallAState extends State<PaywallA> {
 
   void _handlePurchase() async {
     setState(() => _isLoading = true);
-    await Future.delayed(const Duration(milliseconds: 500)); // Simulate network delay
+    await Future.delayed(const Duration(milliseconds: 500));
     widget.onPurchase();
-    if (mounted) {
-      setState(() => _isLoading = false);
-    }
+    if (mounted) setState(() => _isLoading = false);
   }
 
   void _handleRestore() async {
     setState(() => _isLoading = true);
-    await Future.delayed(const Duration(milliseconds: 500)); // Simulate network delay
+    await Future.delayed(const Duration(milliseconds: 500));
     widget.onRestore();
-    if (mounted) {
-      setState(() => _isLoading = false);
-    }
+    if (mounted) setState(() => _isLoading = false);
   }
 
   @override
@@ -44,101 +43,80 @@ class _PaywallAState extends State<PaywallA> {
         body: AppLoader(),
       );
     }
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              // Добавлено изображение
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Stack(
-                  alignment: Alignment.topCenter,
-                  children: [
-                    Image.asset(
-                      'assets/images/paywall_top.png',
-                      width: MediaQuery.of(context).size.width - 48,
-                      fit: BoxFit.cover,
-                    ),
-                    Positioned(
-                      top: 81,
-                      child: Image.asset(
-                        'assets/images/element2.png',
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                  ],
+                padding:
+                    EdgeInsets.symmetric(horizontal: AppDimensions.paddingL),
+                child: Image.asset(
+                  'assets/images/paywall_top.png',
+                  width: double.infinity,
+                  fit: BoxFit.contain,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: EdgeInsets.all(AppDimensions.paddingL),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const SizedBox(height: 32),
                     _buildSubscriptionOption(
-                      title: '3-Day Free Trial',
-                      subtitle: 'then 4.99\$/week',
-                      price: '\$0.00',
+                      title: AppStrings.threeDayTrial,
+                      subtitle: AppStrings.weeklyPrice,
+                      price: AppStrings.trialPrice,
                       onTap: _handlePurchase,
                       isPrimary: true,
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: AppDimensions.spacingM),
                     _buildSubscriptionOption(
-                      title: 'Annual plan',
-                      subtitle: 'Enjoy unlimited access!',
-                      price: '\$39.99',
+                      title: AppStrings.annualPlan,
+                      subtitle: AppStrings.enjoyAccess,
+                      price: AppStrings.annualPrice,
                       onTap: _handlePurchase,
                       isPrimary: false,
                     ),
-                    const SizedBox(height: 24),
+                    SizedBox(height: AppDimensions.spacingL),
                     ElevatedButton(
                       onPressed: _handlePurchase,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF5436FF),
-                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        backgroundColor: AppColors.buttonBlue,
+                        minimumSize:
+                            Size(double.infinity, AppDimensions.buttonHeight),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius:
+                              BorderRadius.circular(AppDimensions.buttonRadius),
                         ),
                       ),
-                      child: const Text(
-                        'Try For Free',
+                      child: Text(
+                        AppStrings.tryForFree,
                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: 'Montserrat',
+                          color: AppColors.textLight,
+                          // Изменен цвет текста на белый
+                          fontSize: AppDimensions.bodySize,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: AppDimensions.spacingM),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         TextButton(
-                          onPressed: () {/* TODO: Terms */},
-                          child: const Text(
-                            'Terms',
-                            style: TextStyle(color: Colors.black54),
-                          ),
+                          onPressed: () {},
+                          child: Text(AppStrings.terms),
                         ),
-                        const SizedBox(width: 24),
+                        SizedBox(width: AppDimensions.spacingM),
                         TextButton(
-                          onPressed: () {/* TODO: Privacy */},
-                          child: const Text(
-                            'Privacy',
-                            style: TextStyle(color: Colors.black54),
-                          ),
+                          onPressed: () {},
+                          child: Text(AppStrings.privacy),
                         ),
-                        const SizedBox(width: 24),
+                        SizedBox(width: AppDimensions.spacingM),
                         TextButton(
                           onPressed: _handleRestore,
-                          child: const Text(
-                            'Restore',
-                            style: TextStyle(color: Colors.black54),
-                          ),
+                          child: Text(AppStrings.restore),
                         ),
                       ],
                     ),
@@ -159,50 +137,53 @@ class _PaywallAState extends State<PaywallA> {
     required VoidCallback onTap,
     required bool isPrimary,
   }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: isPrimary ? const Color(0xFF5436FF) : Colors.grey[100],
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: isPrimary ? Colors.white : Colors.black,
-                    fontFamily: 'Montserrat',
+    return Material(
+      color: isPrimary ? AppColors.buttonBlue : AppColors.cardBackground,
+      borderRadius: BorderRadius.circular(AppDimensions.borderRadiusM),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(AppDimensions.borderRadiusM),
+        child: Padding(
+          padding: EdgeInsets.all(AppDimensions.paddingM),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: AppDimensions.bodySize,
+                      fontWeight: FontWeight.bold,
+                      color: isPrimary
+                          ? AppColors.textLight
+                          : Colors.black,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  subtitle,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: isPrimary ? Colors.white70 : Colors.grey,
-                    fontFamily: 'Montserrat',
+                  Text(
+                    subtitle,
+                    style: TextStyle(
+                      fontSize: AppDimensions.fontSizeXS,
+                      color: isPrimary
+                          ? AppColors.textLight.withOpacity(0.7)
+                          : Colors.grey,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Text(
-              price,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: isPrimary ? Colors.white : Colors.black,
-                fontFamily: 'Montserrat',
+                ],
               ),
-            ),
-          ],
+              Text(
+                price,
+                style: TextStyle(
+                  fontSize: AppDimensions.headlineSize,
+                  fontWeight: FontWeight.bold,
+                  color: isPrimary
+                      ? AppColors.textLight
+                      : Colors.black,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

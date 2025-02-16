@@ -8,25 +8,20 @@ import 'package:docflow/core/constants/strings.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
-
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
-
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
-
   final List<String> _images = [
     AppAssets.onboardingOne,
     AppAssets.onboardingTwo,
   ];
-
   void _onNext() {
     if (_currentPage < _images.length - 1) {
       _pageController.nextPage(
-        duration:
-            Duration(milliseconds: AppDimensions.onboardingAnimationDuration),
+        duration: Duration(milliseconds: AppDimensions.onboardingAnimationDuration),
         curve: Curves.easeInOut,
       );
     } else {
@@ -40,11 +35,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       );
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.onboardingBackground,
+      backgroundColor: Colors.white, // Изменен цвет фона на белый
       body: PageView.builder(
         controller: _pageController,
         itemCount: _images.length,
@@ -54,49 +48,38 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.all(AppDimensions.onboardingBottomPadding),
+        padding: EdgeInsets.all(AppDimensions.paddingM),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
               width: double.infinity,
-              height: AppDimensions.onboardingButtonHeight,
+              height: AppDimensions.buttonHeight,
               child: ElevatedButton(
                 onPressed: _onNext,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF5436FF),
-                  foregroundColor: Colors.white,
+                  backgroundColor: AppColors.buttonBlue,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                      AppDimensions.onboardingButtonRadius,
-                    ),
+                    borderRadius: BorderRadius.circular(AppDimensions.buttonRadius),
                   ),
                 ),
-                child: Text(
-                  AppStrings.onboardingContinueButton,
-                  style: TextStyle(
-                    fontSize: AppDimensions.onboardingButtonTextSize,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                child: Text(AppStrings.onboardingContinueButton),
               ),
             ),
-            SizedBox(height: AppDimensions.onboardingBottomPadding),
+            SizedBox(height: AppDimensions.spacingM),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
                 _images.length,
-                (index) => Container(
-                  margin: EdgeInsets.symmetric(
-                    horizontal: AppDimensions.onboardingDotSpacing,
-                  ),
-                  width: AppDimensions.onboardingDotSize,
-                  height: AppDimensions.onboardingDotSize,
+                    (index) => Container(
+                  margin: EdgeInsets.symmetric(horizontal: AppDimensions.spacingXS),
+                  width: AppDimensions.dotIndicatorSize,
+                  height: AppDimensions.dotIndicatorSize,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: _currentPage == index
-                        ? AppColors.background
-                        : AppColors.onboardingDotInactive,
+                        ? AppColors.dotIndicatorActive
+                        : AppColors.dotIndicatorInactive,
                   ),
                 ),
               ),
@@ -106,10 +89,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       ),
     );
   }
-
   @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
   }
 }
+
