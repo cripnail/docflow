@@ -1,11 +1,9 @@
-import 'package:docflow/features/onboarding/presentation/widgets/onboarding_item_widget.dart';
-import 'package:docflow/features/subscription/presentation/screens/paywall_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:docflow/core/constants/assets.dart';
 import 'package:docflow/core/constants/colors.dart';
 import 'package:docflow/core/constants/dimensions.dart';
 import 'package:docflow/core/constants/strings.dart';
-
+import 'package:docflow/features/subscription/presentation/screens/paywall_screen.dart';
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
   @override
@@ -38,13 +36,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // Изменен цвет фона на белый
+      backgroundColor: Colors.white,
       body: PageView.builder(
         controller: _pageController,
         itemCount: _images.length,
         onPageChanged: (page) => setState(() => _currentPage = page),
-        itemBuilder: (context, index) => OnboardingItemWidget(
-          imagePath: _images[index],
+        itemBuilder: (context, index) => Center(
+          child: Image.asset(
+            _images[index],
+            fit: BoxFit.contain,
+          ),
         ),
       ),
       bottomNavigationBar: Padding(
@@ -52,18 +53,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(
-              width: double.infinity,
-              height: AppDimensions.buttonHeight,
-              child: ElevatedButton(
-                onPressed: _onNext,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.buttonBlue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppDimensions.buttonRadius),
-                  ),
+            ElevatedButton(
+              onPressed: _onNext,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.buttonBlue,
+                minimumSize: Size(double.infinity, AppDimensions.buttonHeight),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppDimensions.buttonRadius),
                 ),
-                child: Text(AppStrings.onboardingContinueButton),
+              ),
+              child: Text(
+                AppStrings.onboardingContinueButton,
+                style: TextStyle(
+                  color: AppColors.textLight,
+                  fontSize: AppDimensions.bodySize,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             SizedBox(height: AppDimensions.spacingM),
@@ -95,4 +100,3 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     super.dispose();
   }
 }
-

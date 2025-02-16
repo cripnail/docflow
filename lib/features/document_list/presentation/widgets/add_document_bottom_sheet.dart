@@ -1,3 +1,4 @@
+import 'package:docflow/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:docflow/core/constants/strings.dart';
 import 'package:docflow/core/constants/dimensions.dart';
@@ -18,8 +19,17 @@ class AddDocumentBottomSheet extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           ListTile(
-            leading: Icon(Icons.document_scanner, size: AppDimensions.iconM),
-            title: const Text(AppStrings.scan),
+            leading: Icon(
+              Icons.document_scanner,
+              size: AppDimensions.iconM,
+              color: AppColors.buttonBlue,
+            ),
+            title: Text(
+              AppStrings.scan,
+              // style: TextStyle(
+              //   color: AppColors.textLight,
+              // ),
+            ),
             onTap: () {
               Navigator.pop(context);
               Navigator.push(

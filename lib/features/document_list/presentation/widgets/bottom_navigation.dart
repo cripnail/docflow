@@ -92,7 +92,7 @@ class BottomNavigation extends StatelessWidget {
           label,
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: isSelected ? Colors.white : AppColors.textSecondary,
+            color: isSelected ? AppColors.textLight : AppColors.textSecondary,
             fontWeight: AppTextStyles.fontWeightMedium,
           ),
         ),
