@@ -8,6 +8,7 @@ import 'package:docflow/core/shared/widgets/loading_indicator.dart';
 import 'package:docflow/core/constants/strings.dart';
 import 'package:docflow/features/subscription/domain/models/subscription_state.dart';
 import 'package:docflow/features/subscription/presentation/bloc/subscription_bloc.dart';
+import 'package:docflow/features/subscription/domain/models/subscription_event.dart';
 
 class PaywallView extends StatelessWidget {
   const PaywallView({super.key});
@@ -27,8 +28,18 @@ class PaywallView extends StatelessWidget {
             }
             final variant = snapshot.data ?? AppStrings.variantDefaultValue;
             return variant == AppStrings.variantBValue
-                ? const PaywallBView()
-                : const PaywallAView();
+                ? const PaywallBView(
+                    onTryFreePressed: null,
+                    onRestorePressed: null,
+                  )
+                : PaywallA(
+                    onPurchase: () => context
+                        .read<SubscriptionBloc>()
+                        .add(const PurchaseSubscription()),
+                    onRestore: () => context
+                        .read<SubscriptionBloc>()
+                        .add(const RestoreSubscription()),
+                  );
           },
         );
       },
