@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/constants/dimensions.dart';
+import 'package:docflow/core/constants/dimensions.dart';
 
 class PageIndicator extends StatelessWidget {
   final int count;

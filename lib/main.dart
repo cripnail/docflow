@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const LoaderScreen(), // Use LoaderScreen as initial route
+        home: const LoaderScreen(),
       ),
     );
   }

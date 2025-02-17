@@ -1,1 +1,5 @@
-enum OnboardingState { initial, ratingRequested, completed }
+enum OnboardingState {
+  initial,
+  ratingRequested,
+  completed,
+}

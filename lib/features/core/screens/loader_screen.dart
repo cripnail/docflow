@@ -17,11 +17,9 @@ class _LoaderScreenState extends State<LoaderScreen> {
   }
 
   Future<void> _initAndNavigate() async {
-    // Simulate initialization delay
     await Future.delayed(const Duration(seconds: 1));
     if (!mounted) return;
 
-    // Navigate to onboarding
     _navigateToOnboarding();
   }
 

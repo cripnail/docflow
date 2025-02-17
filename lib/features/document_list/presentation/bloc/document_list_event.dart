@@ -1,8 +1,6 @@
-// lib/features/document_list/presentation/bloc/document_list_event.dart
-
 import 'dart:io';
 
-import '../../domain/models/document_type.dart';
+import 'package:docflow/features/document_list/domain/models/document_type.dart';
 
 abstract class DocumentListEvent {
   const DocumentListEvent();

@@ -1,1 +1,6 @@
-enum DocumentStatus { initial, loading, success, failure }
+enum DocumentStatus {
+  initial,
+  loading,
+  success,
+  failure,
+}

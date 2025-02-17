@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:docflow/core/constants/strings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../domain/models/document_metadata.dart';
+import 'package:docflow/features/document_scanner/domain/models/document_metadata.dart';
 
 class MetadataStorageService {
   final SharedPreferences _prefs;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'dimensions.dart';
+import 'package:docflow/core/constants/dimensions.dart';
 
 abstract class AppStyles {
   static final elevatedButtonStyle = ButtonStyle(

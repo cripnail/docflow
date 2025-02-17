@@ -1,1 +1,5 @@
-enum DocumentType { scan, gallery, file }
+enum DocumentType {
+  scan,
+  gallery,
+  file,
+}

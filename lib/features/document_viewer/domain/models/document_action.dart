@@ -1,1 +1,5 @@
-enum DocumentAction { share, print, delete }
+enum DocumentAction {
+  share,
+  print,
+  delete,
+}

@@ -1,5 +1,5 @@
-import '../../data/models/document_model.dart';
-import '../../domain/models/document_status.dart';
+import 'package:docflow/features/document_list/data/models/document_model.dart';
+import 'package:docflow/features/document_list/domain/models/document_status.dart';
 
 class DocumentListState {
   final List<DocumentModel> documents;

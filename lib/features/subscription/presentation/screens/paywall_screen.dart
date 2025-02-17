@@ -36,7 +36,7 @@ class PaywallScreen extends StatelessWidget {
         MaterialPageRoute(
           builder: (_) => documentsScreen,
         ),
-            (route) => false,
+        (route) => false,
       );
     }
   }
@@ -45,7 +45,7 @@ class PaywallScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-      di.sl<SubscriptionBloc>()..add(const CheckSubscriptionStatus()),
+          di.sl<SubscriptionBloc>()..add(const CheckSubscriptionStatus()),
       child: BlocConsumer<SubscriptionBloc, SubscriptionState>(
         listener: (context, state) {
           if (state is SubscriptionActive) {
@@ -60,19 +60,19 @@ class PaywallScreen extends StatelessWidget {
           return Scaffold(
             appBar: showCloseButton
                 ? AppBar(
-              leading: IconButton(
-                icon: const Icon(Icons.close),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-            )
+                    leading: IconButton(
+                      icon: const Icon(Icons.close),
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
+                  )
                 : null,
             body: Stack(
               children: [
                 FutureBuilder<String>(
                   future: di.sl<RevenueCatService>().getMetadataString(
-                    AppStrings.paywallKeyMetadata,
-                    AppStrings.variantDefaultValue,
-                  ),
+                        AppStrings.paywallKeyMetadata,
+                        AppStrings.variantDefaultValue,
+                      ),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const LoadingIndicator();
@@ -103,7 +103,7 @@ class PaywallScreen extends StatelessWidget {
                 ),
                 if (state is SubscriptionLoading)
                   Container(
-                    color: Colors.black.withOpacity(0.5),
+                    color: Color.fromRGBO(0, 0, 0, 0.5),
                     child: const Center(
                       child: CircularProgressIndicator(),
                     ),

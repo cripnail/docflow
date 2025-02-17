@@ -26,9 +26,6 @@ class AddDocumentBottomSheet extends StatelessWidget {
             ),
             title: Text(
               AppStrings.scan,
-              // style: TextStyle(
-              //   color: AppColors.textLight,
-              // ),
             ),
             onTap: () {
               Navigator.pop(context);

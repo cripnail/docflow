@@ -1,1 +1,4 @@
-enum SubscriptionType { free, premium }
+enum SubscriptionType {
+  free,
+  premium,
+}
